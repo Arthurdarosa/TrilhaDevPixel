@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Simples</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chatBox">
+            <!-- Mensagens serão adicionadas aqui -->
+        </div>
+        <div class="input-container">
+            <input type="text" id="messageInput" placeholder="Digite sua mensagem">
+            <button onclick="addMessage()">Enviar</button>
+        </div>
+    </div>
+    <script>
+        function addMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const chatBox = document.getElementById('chatBox');
+
+            // Pega o valor do input
+            const message = messageInput.value;
+
+            // Cria um novo elemento de parágrafo para a mensagem
+            const messageElement = document.createElement('p');
+            messageElement.textContent = message;
+
+            // Adiciona a mensagem na caixa de chat
+            chatBox.appendChild(messageElement);
+
+            // Limpa o campo de input
+            messageInput.value = '';
+
+            // Rola para baixo para a última mensagem
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+</body>
+</html>

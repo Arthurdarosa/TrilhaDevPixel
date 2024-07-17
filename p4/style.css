@@ -1,0 +1,221 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+img{
+    margin-left: 10vh;
+    margin-top: 3vh;
+    width: 16vh; 
+    height: 5.2vh; 
+    display: block;
+}
+
+a{
+    color: #7C3AED;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration: underline;
+
+}
+
+.row
+{
+	position: relative;
+	margin: 0;
+}
+
+.formSenha .row img
+{
+    margin: 0;
+	width: 40px;
+	height: 90%;
+	cursor: pointer;
+}
+
+.formSenha .row img
+{
+	
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+main{
+    flex-direction: row;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+section{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    width: 50vw;
+    background-color: #F8FAFC;
+
+}
+
+.login{
+    margin: auto;
+    width: 55%;
+}
+
+.text{
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    gap: 1.5vh;
+    margin-bottom: 5vh;
+}
+
+.inputs{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.efeito{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50vw;
+    height: 100%;
+    background-color: #7C3AED;
+    mix-blend-mode: screen;
+}
+
+aside{
+    mix-blend-mode: multiply;
+    background-size: cover;
+    background-position: center;
+
+    background-repeat: no-repeat;
+    background-image: url(images/Rectangle\ 1.png);
+    width: 50vw;
+    height: 100vh;
+}
+
+button{
+    margin-top: 3vh;
+    margin-bottom: 1vh;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #7C3AED;
+    width: 100%;
+    height: 5.5vh;
+    color: #ffffff;
+}
+
+button:hover {
+    background-color: #9F67FF;
+}
+
+label{
+    display: block;
+    margin-bottom: 5px;
+}
+
+.senha{
+    width: 100%;
+}
+
+.bnt{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+input{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.esqueceu{
+    width: 50%;
+    display: block;
+    margin-bottom: 10px;
+    text-align: right;
+    font-size: 0.9em;
+}
+
+
+.senhaelink{
+    margin-top: 3vh;
+    display:flex;
+    flex-direction: row;
+}
+
+.efeitotelacurta{
+    display:none
+}
+
+#message, #password-message {
+    height: 1.5vh;
+    width: 100%;
+
+
+
+    visibility: hidden; 
+}
+
+#message.show, #password-message.show {
+    visibility: visible; 
+}
+
+
+
+@media (max-width: 901px){
+    aside{
+        display: none;
+    }
+
+    .login{
+        width: 80%;
+    }
+
+    section{
+        margin: auto;
+        width: 70%;
+        z-index: 2;
+    }
+
+    main{
+        mix-blend-mode: multiply;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        background-repeat: no-repeat;
+        background-image: url(images/Rectangle\ 1.png);
+        overflow: hidden;
+    }
+
+    .logo{
+        margin: 0 auto ;
+        margin-top: 3vh;
+    }
+
+    .efeitotelacurta{
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100vw;
+        height: 100%;
+        background-color: #7C3AED;
+        mix-blend-mode: screen;
+        z-index: 1;
+    }
+}

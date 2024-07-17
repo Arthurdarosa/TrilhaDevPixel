@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>cartãozinho</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="cima" id="cima">
+
+            <div class="formulario">
+                <form id="creditCardForm">
+                    <div class="form-group" id="cardNumberGroup">
+                        <label for="cardNumber">Número do cartão</label>
+                        <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456"
+                            maxlength="19" required inputmode="numeric" >
+                        <p id="cardNumberMessage" class="invalid-message">Número do cartão inválido!</p>
+                    </div>
+
+                    <div class="form-group" id="cardHolderGroup">
+                        <label for="cardHolder">Nome do titular</label>
+                        <input type="text" id="cardHolder" name="cardHolder" placeholder="Nome como está no cartão"
+                            required>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group labelrow" id="expiryGroup">
+                            <label for="expiry">Validade</label>
+                            <input type="text" id="expiry" name="expiry" placeholder="mm/aa" maxlength="5" required>
+                            <p id="expiryMessage" class="invalid-message">Data de validade inválida!</p>
+                        </div>
+
+                        <div class="form-group labelrow" id="cvvGroup">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" name="cvv" placeholder="***" maxlength="3" required>
+                        </div>
+                    </div>
+                   
+                </form>
+            </div>
+            
+            <div class="cartao" id="cartao">
+                <img src="images/Credit card.png" alt="">
+                <p id="selo"><img src="images/Vector (2).png" alt=""> Seus dados estão seguros</p>
+            </div>
+            <div class="selo" id="selo-container"></div>
+        </div>
+        <button type="submit" form="creditCardForm">Adicionar cartão</button>
+
+    </div>
+</body>
+
+</html>
+
+<script>
+    window.addEventListener('resize', function () {
+        const cartao = document.getElementById('cartao');
+        const seloContainer = document.getElementById('selo-container');
+        const selo = document.getElementById('selo');
+
+        if (window.innerWidth <= 1000) {
+            if (cartao.contains(selo)) {
+                seloContainer.appendChild(selo);
+            }
+        } else {
+            if (seloContainer.contains(selo)) {
+                cartao.appendChild(selo);
+            }
+        }
+    });
+
+    // Chama a função na inicialização para garantir que o selo esteja na posição correta
+    window.dispatchEvent(new Event('resize'));
+
+    const ncartao = document.getElementById('cardNumber');
+
+    ncartao.addEventListener('input', function () {
+        let trimmedValue = ncartao.value.replace(/\./g, '');
+        trimmedValue = trimmedValue.replace(/\D/g, '');
+
+        if (trimmedValue.length > 0) {
+            let formattedValue = '';
+            for (let i = 0; i < trimmedValue.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    formattedValue += '.';
+                }
+                formattedValue += trimmedValue.charAt(i);
+            }
+            ncartao.value = formattedValue;
+        } else {
+            ncartao.value = '';
+        }
+    });
+
+    const datacv = document.getElementById('expiry');
+
+    datacv.addEventListener('input', function () {
+        let data = datacv.value;
+        let dataformat = '';
+
+        data = data.replace(/\D/g, '');
+
+        if (data.length > 0) {
+            if (data.length > 2) {
+                dataformat = data.substring(0, 2) + '/' + data.substring(2);
+            } else {
+                dataformat = data;
+            }
+        }
+
+        datacv.value = dataformat;
+    });
+
+    document.getElementById('creditCardForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const cardNumber = ncartao.value.replace(/\D/g, '');
+        const expiryDate = datacv.value;
+        const cardNumberMessage = document.getElementById('cardNumberMessage');
+        const expiryMessage = document.getElementById('expiryMessage');
+
+        const isCardNumberValid = validateCardNumber(cardNumber);
+        const isExpiryDateValid = validateExpiryDate(expiryDate);
+
+        if (isCardNumberValid && isExpiryDateValid) {
+            cardNumberMessage.style.display = 'none';
+            expiryMessage.style.display = 'none';
+            setValidity('cardNumberGroup', true);
+            setValidity('expiryGroup', true);
+            alert('Cartão de crédito é válido!');
+        } else {
+            if (!isCardNumberValid) {
+                cardNumberMessage.style.display = 'block';
+                setValidity('cardNumberGroup', false);
+            } else {
+                cardNumberMessage.style.display = 'none';
+                setValidity('cardNumberGroup', true);
+            }
+
+            if (!isExpiryDateValid) {
+                expiryMessage.style.display = 'block';
+                setValidity('expiryGroup', false);
+            } else {
+                expiryMessage.style.display = 'none';
+                setValidity('expiryGroup', true);
+            }
+        }
+    });
+
+    function validateCardNumber(cardNumber) {
+        let sum = 0;
+        let shouldDouble = false;
+
+        for (let i = cardNumber.length - 1; i >= 0; i--) {
+            let digit = parseInt(cardNumber.charAt(i));
+
+            if (shouldDouble) {
+                digit *= 2;
+                if (digit > 9) {
+                    digit -= 9;
+                }
+            }
+
+            sum += digit;
+            shouldDouble = !shouldDouble;
+        }
+
+        return sum % 10 === 0;
+    }
+
+    function validateExpiryDate(expiryDate) {
+        const [month, year] = expiryDate.split('/').map(num => parseInt(num, 10));
+
+        if (!month || !year || month < 1 || month > 12) {
+            return false;
+        }
+
+        const now = new Date();
+        const expiry = new Date(`20${year}`, month - 1);
+
+        return expiry > now;
+    }
+
+    function setValidity(groupId, isValid) {
+        const group = document.getElementById(groupId);
+        if (isValid) {
+            group.classList.remove('invalid');
+        } else {
+            group.classList.add('invalid');
+        }
+    }
+
+</script>

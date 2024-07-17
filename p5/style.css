@@ -1,0 +1,150 @@
+body {
+    background-color: #111827;
+    color: #F3F4F6;
+    font-family: "Roboto", sans-serif;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    background-color: #1F2937;
+    margin: auto;
+    min-width: 55vw;
+    max-width: auto;
+    text-align: center;
+    height: auto;
+    /* gap: 5vh; */
+    flex-direction: column;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.cima {
+    display: flex;
+    flex-direction: row;
+}
+
+.cartao {
+    padding: 3vh 3vw;
+}
+
+button {
+    align-self: center;
+    width: 90%;
+    background-color: #9333EA;
+    border-radius: 5px;
+    border: 0px;
+    color: #F9FAFB;
+    height: 5vh;
+    margin: 3vh 2vw;
+}
+
+button:hover {
+    cursor: pointer;
+    transition-duration: 0.3s;
+    background-color: #A855F7;
+}
+
+button:focus {
+    outline: solid #F9FAFB 1px;
+    outline-offset: 2px;
+    transition-duration: 0s;
+}
+
+button:disabled {
+    background-color: #9333EA;
+    color: #F9FAFB;
+}
+
+.formulario {
+    flex: 1;
+    padding: 3vh 3vw;
+    text-align: start;
+}
+
+label {
+    display: block;
+    margin-bottom: 1vh;
+}
+
+input {
+    border: solid #374151 1px;
+    color: #F3F4F6;
+    background-color: #111827;
+    width: 100%;
+    padding: 10px 1vw;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.labelrow {
+    flex: 1;
+}
+
+.labelrow input {
+    width: 60%;
+}
+
+.row {
+    gap: 1vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.invalid-message {
+    color: red;
+    display: none;
+}
+
+.valid-message {
+    color: green;
+    display: none;
+}
+
+.invalid-message{
+    margin-top: 0;
+}
+
+@media (max-width: 1000px) {
+    body {
+        background-color: #1F2937;
+    }
+
+    .cima {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cartao {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        order: -1;
+    }
+
+    #selo {
+        order: 1;
+        padding: 2vh 0;
+    }
+
+    .formulario {
+        order: 0;
+    }
+
+    .formulario,
+    .cartao {
+        width: 90%;
+        padding: 2vh 2vw;
+    }
+
+    input {
+        padding: 1vh 1px;
+    }
+
+    .cartao img {
+        max-width: 100%;
+        height: auto;
+    }
+}

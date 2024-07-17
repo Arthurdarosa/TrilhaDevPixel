@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>Receita Junina</title>
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <img class="espigao" src="images/ilustracao-de-pamonha-desenhada-a-mao_23-2150275164 1.png" alt="">
+            <div class="text">
+                <h1>Pamonha</h1>
+                <p>Prato típico com milho verde ralado</p>
+                <div class="contador">
+                    <label for="">Porções</label>
+                    <button class="botoes" id="decrease"><img src="images/Vector (3).png" alt="" class="botao"></button>
+                    <p id="quantity"></p>
+                    <button class="botoes" id="increase"><img src="images/Vector (4).png" alt="" class="botao"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="ingredientes">
+            <div class="titulo">
+
+                <h2><img src="images/Vector (2).png" alt="" class="icon">    Ingredientes</h2>
+            </div>
+
+            <ul>
+
+                <li id="espiga"></li>
+                <li id="acucar"></li>
+                <li id="manteiga"></li>
+                <li> Sal a gosto</li>
+                <li> Palha de milho (para embrulhar)</li>
+            </ul>
+        </div>
+
+        <div class="preparo">
+            <div class="titulo">
+
+                <h2> <img src="images/Vector (1).png" alt="" class="icon">   Modo de preparo</h2>
+            </div>
+
+            <ol>
+                <li> Descasque a espiga de milho e corte os grãos.</li>
+                <li> Bata o milho, açúcar, manteiga e sal no liquidificador.</li>
+                <li> Coloque a massa nas palhas de milho e feche bem.</li>
+                <li> Cozinhe em água fervente por cerca de 40 minutos.</li>
+                <li> Deixe esfriar e sirva.</li>
+            </ol>
+
+        </div>
+
+    </footer>
+</body>
+
+</html>
+<script>
+
+    var meuNumero = 1
+
+    document.getElementById('increase').addEventListener('click', function () {
+        meuNumero++;
+        document.getElementById("espiga").innerHTML = meuNumero + " espiga de milho verde"
+        document.getElementById("manteiga").innerHTML = meuNumero + " colher de sopa de manteiga"
+        document.getElementById("acucar").innerHTML = meuNumero + " colher de sopa de açúcar"
+        document.getElementById("quantity").innerHTML = meuNumero;
+    });
+
+    document.getElementById('decrease').addEventListener('click', function () {
+        meuNumero--;
+        if (meuNumero < 1) {
+            meuNumero = 1;
+        }
+        document.getElementById("espiga").innerHTML = meuNumero + " espiga de milho verde"
+        document.getElementById("manteiga").innerHTML = meuNumero + " colher de sopa de manteiga"
+        document.getElementById("acucar").innerHTML = meuNumero + " colher de sopa de açúcar"
+        document.getElementById("quantity").innerHTML = meuNumero;
+    });
+
+    document.getElementById("espiga").innerHTML = meuNumero + " espiga de milho verde"
+    document.getElementById("manteiga").innerHTML = meuNumero + " colher de sopa de manteiga"
+    document.getElementById("acucar").innerHTML = meuNumero + " colher de sopa de açúcar"
+    document.getElementById("quantity").innerHTML = "" + meuNumero;
+</script>

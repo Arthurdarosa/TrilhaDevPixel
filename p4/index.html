@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>login</title>
+</head>
+
+<body>
+    <main>
+        <div class="efeitotelacurta"></div>
+        <section>
+            <img src="images/logo.png" alt="logo da empresa" class="logo">
+            <div class="login">
+                <div class="text">
+                    <h1>Acesse a plataforma</h1>
+                    <p>Faça login ou registre-se para começar a construir seus projetos ainda hoje.</p>
+                </div>
+                <div class="inputs">
+                    <form id="emailForm">
+                        <div class="formEmail">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" placeholder="Digite seu e-mail">
+                            <p id="message"></p>
+                        </div>
+                        <div class="formSenha">
+                            <div class="senhaelink">
+                                <label for="password" class="senha">Senha</label>
+                                <a href="#" class="esqueceu">Esqueceu a senha?</a>
+                            </div>
+                            <div class="row">
+                                <input type="password" id="password" class="senha1" placeholder="Digite sua senha">
+                                <img src="https://icon-library.com/images/icon-eyes/icon-eyes-12.jpg" class="btn">
+                            </div>
+                            <p id="password-message"></p>
+                        </div>
+                        <button type="submit">Entrar</button>
+                        <p>Ainda não tem uma conta? <a href="">Inscreva-se</a></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <aside>
+            <div class="efeito"></div>
+        </aside>
+    </main>
+
+    <script>
+        const senha = document.querySelector('.senha1');
+        const btn = document.querySelector('.btn');
+
+        btn.onclick = () => {
+            if (senha.type === 'password') {
+                senha.type = 'text';
+                btn.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8SA14-A-zoRaiJ2GdUiESsisaFiHNYrUZtjtjZqnth0D_KdfkwzQWIdCjbzhAoYKPTvs&usqp=CAU';
+            } else {
+                senha.type = 'password';
+                btn.src = 'https://icon-library.com/images/icon-eyes/icon-eyes-12.jpg';
+            }
+        }
+
+        document.getElementById('emailForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const emailInput = document.getElementById('email');
+            const email = emailInput.value;
+            const passwordInput = document.getElementById('password');
+            const password = passwordInput.value;
+            const messageElement = document.getElementById('message');
+            const passwordMessageElement = document.getElementById('password-message');
+
+            let valid = true;
+
+            if (!validateEmail(email)) {
+                messageElement.textContent = 'Email inválido!';
+                messageElement.style.color = 'red';
+                messageElement.classList.add('show');
+                valid = false;
+            } else {
+                messageElement.textContent = '';
+                messageElement.classList.remove('show');
+            }
+
+            if (!password) {
+                passwordMessageElement.textContent = 'Senha não pode estar vazia!';
+                passwordMessageElement.style.color = 'red';
+                passwordMessageElement.classList.add('show');
+                valid = false;
+            } else {
+                passwordMessageElement.textContent = '';
+                passwordMessageElement.classList.remove('show');
+            }
+
+            if (valid) {
+                // Se o código chegou aqui, ambos o email e a senha são válidos
+                messageElement.textContent = 'Email válido!';
+                messageElement.style.color = 'green';
+                messageElement.classList.add('show');
+
+                // Aqui você pode adicionar a lógica para enviar o formulário
+                // Por exemplo, você pode enviar uma requisição AJAX para o servidor
+            }
+        });
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+    </script>
+</body>
+</html>
