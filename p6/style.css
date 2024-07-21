@@ -1,51 +1,127 @@
 
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
     height: 100vh;
     margin: 0;
-    background-color: #f0f0f0;
+    background-color: #1A1924;
+}
+
+header img{
+    margin: 0 2vw;
+    height: max-content;
+    width: auto;
 }
 
 .chat-container {
-    width: 300px;
-    background-color: white;
+    height: 80vh;
+    width: 90vw;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column-reverse;
+    margin: auto;
+}
+
+.online img{
+    margin: 0 0.5vw !important;
+}
+
+.online{
+    padding: 0;
+    margin: 0;
+    color: #00B37E;
+    font-size: 0.8rem;
+    background-color: #00000000 !important;
+}
+
+header{
+    padding: 2vh 0vh 1vh 0vh;
+    align-items: center;
+    margin: auto;
+    justify-content: space-evenly;
+    width: 90vw;
+    display: flex;
+}
+
+h1{
+    margin: 0;
+    color: #E1E1E6;
+    font-size: 1.5rem;
+}
+
+p{ 
+    padding: 1vh 1vw; 
+    width: max-content;
+    margin-left: auto;  
+    border-radius: 30px;
+    max-width: 50%;
+    background-color: #07847E;
+    color: #E1E1E6;
+    word-wrap: break-word;
+    margin-bottom: 5vh;
+
+}
+
+.nomeon{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    width: 80%;
+}
+
+.chat-box::-webkit-scrollbar-track {
+    background: #282843; /* Cor do fundo da trilha */
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+    background: #888; /* Cor do polegar */
+    border-radius: 10px; /* Bordas arredondadas do polegar */
+}
+
+.chat-box::-webkit-scrollbar {
+    width: 0.4vw; /* Largura da barra de rolagem */
 }
 
 .chat-box {
-    max-height: 400px;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column-reverse;
     padding: 10px;
+    height: 101vh;
+    width: 100%;
+    box-sizing: border-box;
 }
 
+
 .input-container {
+    margin: auto;
+    width: 86vw;
+    border-radius: 30px;
+    background-color: #282843;
     display: flex;
-    border-top: 1px solid #ddd;
-    padding: 10px;
+    padding: 1vh 2vw;
+    margin-top: 2vh;
+    height: 3vh;
 }
 
 input[type="text"] {
+    color: #E1E1E6;
+    background-color: #282843;
     flex: 1;
-    border: 1px solid #ddd;
+    border: 0;
     border-radius: 4px;
     padding: 5px;
 }
 
 button {
     margin-left: 10px;
-    padding: 5px 10px;
+    padding: 0px 10px;
     border: none;
-    background-color: #007bff;
+    background-color: #282843;
     color: white;
     border-radius: 4px;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #0056b3;
-}
